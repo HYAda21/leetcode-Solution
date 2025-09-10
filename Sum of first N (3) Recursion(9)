@@ -1,0 +1,43 @@
+Question 9:
+Given an integer N, return the sum of first N natural numbers. Try to solve this using recursion.
+
+
+Examples:
+Input : N = 4
+
+Output : 10
+
+Explanation : first four natural numbers are 1, 2, 3, 4.
+
+Sum is 1 + 2 + 3 + 4 => 10.
+
+Input : N = 2
+
+Output : 3
+
+Explanation : first two natural numbers are 1, 2.
+
+Sum is 1 + 2 => 3.
+solution:
+import java.util.Scanner;
+
+public class Main
+{  public static int NumbersSum(int N) {
+        // base case
+        if (N == 0) {
+            return 0;
+        }
+        // recursive case
+        return N + NumbersSum(N - 1);
+    }
+    
+    
+    
+	public static void main(String[] args){
+	    Scanner sc = new Scanner(System.in);
+	    int N = sc.nextInt();
+	    System.out.println(NumbersSum(N));
+	    
+	}
+	
+}
