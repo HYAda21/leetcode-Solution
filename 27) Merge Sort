@@ -1,0 +1,82 @@
+
+Solution :
+
+public class Solution {
+
+    public static void mergeSort(int[] arr, int start, int end) {
+        if (start < end) { // ✅ base case
+            int mid = start + (end - start) / 2;
+
+            mergeSort(arr, start, mid);      // sort left
+            mergeSort(arr, mid + 1, end);    // sort right
+
+            merge(arr, start, mid, end);     // merge both halves
+        }
+    }
+
+    public static void merge(int[] arr, int start, int mid, int end) {
+        int len1 = mid - start + 1;
+        int len2 = end - mid;
+
+        int[] n1 = new int[len1];
+        int[] n2 = new int[len2];
+
+        // Copy left part
+        for (int i = 0; i < len1; i++) {
+            n1[i] = arr[start + i];
+        }
+        // Copy right part
+        for (int j = 0; j < len2; j++) {
+            n2[j] = arr[mid + 1 + j]; // ✅ fixed
+        }
+
+        int i = 0, j = 0, k = start;
+
+        // Merge arrays
+        while (i < len1 && j < len2) { // ✅ fixed condition
+            if (n1[i] <= n2[j]) {
+                arr[k] = n1[i];
+                i++;
+            } else {
+                arr[k] = n2[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements of n1
+        while (i < len1) {
+            arr[k] = n1[i];
+            i++;
+            k++;
+        }
+
+        // Copy remaining elements of n2
+        while (j < len2) {
+            arr[k] = n2[j];
+            j++;
+            k++;
+        }
+    }
+
+    // Helper to print array
+    public static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    // Driver code
+    public static void main(String[] args) {
+        int[] arr = {12, 11, 13, 5, 6, 7};
+
+        System.out.println("Original Array:");
+        printArray(arr);
+
+        mergeSort(arr, 0, arr.length - 1);
+
+        System.out.println("Sorted Array:");
+        printArray(arr);
+    }
+}
