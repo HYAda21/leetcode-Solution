@@ -1,0 +1,27 @@
+Question 50) 
+You are given the head of a singly linked list. Your task is to return the number of nodes in the linked list.
+
+
+Examples:
+Input: head = [1, 2, 3, 4, 5]
+
+Output: 5
+
+Input: head = [8, 6]
+
+Output: 2
+
+
+Solution :
+class Solution {
+    public int getLength(ListNode head) {
+        int count = 0;
+        ListNode current = head;
+
+    while(current != null){
+        count++;
+        current = current.next;
+    }
+
+    return count; }
+}
